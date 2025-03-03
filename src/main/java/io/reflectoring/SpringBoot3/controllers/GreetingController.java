@@ -3,6 +3,7 @@ package io.reflectoring.SpringBoot3.controllers;
 import io.reflectoring.SpringBoot3.Entity.Greeting;
 import io.reflectoring.SpringBoot3.Repository.GreetingRepository;
 import io.reflectoring.SpringBoot3.services.MessageServices;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -97,6 +98,17 @@ public class GreetingController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
+        //UC8
+        @DeleteMapping("/greetings/{id}")
+        public ResponseEntity<String> deleteGreeting(@PathVariable Long id) {
+            if (greetingRepository.existsById(id)) {
+                greetingRepository.deleteById(id);
+                return ResponseEntity.ok("Greeting deleted successfully!");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Greeting with ID " + id + " not found.");
+            }
+        }
 
 
 }
