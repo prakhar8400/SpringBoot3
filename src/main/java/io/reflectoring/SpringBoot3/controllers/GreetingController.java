@@ -84,5 +84,19 @@ public class GreetingController {
     public List<Greeting> getAllGreetingssaved() {
         return greetingRepository.findAll();
     }
+    //UC7
+    @PutMapping("/greetings/{id}")
+    public ResponseEntity<Greeting> updateGreeting(@PathVariable Long id, @RequestBody Greeting updatedGreeting) {
+        return greetingRepository.findById(id)
+                .map(greeting -> {
+                    greeting.setMessage(updatedGreeting.getMessage());
+                    greeting.setName(updatedGreeting.getName());
+
+                    greetingRepository.save(greeting);
+                    return ResponseEntity.ok(greeting);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 
 }
