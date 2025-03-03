@@ -39,4 +39,19 @@ public class GreetingController {
     public String Services(){
         return obj.getGreetingMessage();
     }
+    //UC3
+    // Default Greeting: No parameters
+    @GetMapping(path="query")
+    public String getGreeting(@PathParam("firstName") String firstName, @PathParam("lastName") String lastName) {
+        if ((firstName == null || firstName.isEmpty()) && (lastName == null || lastName.isEmpty())) {
+            return "Hello World!";
+        } else if (firstName == null || firstName.isEmpty()) {
+            return "Hello Mr./Ms. " + lastName + "!";
+        } else if (lastName == null || lastName.isEmpty()) {
+            return "Hello " + firstName + "!";
+        } else {
+            return "Hello " + firstName + " " + lastName + "!";
+        }
+    }
+
 }
