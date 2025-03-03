@@ -26,7 +26,17 @@ public class GreetingController {
 
     @DeleteMapping(path = "deletegreetings")
     public String deleteGreeting() {
+
         return "{\"message\": \"Hello, this is a DELETE request!\"}";
     }
+    //UC2
+    MessageServices obj;
 
+    public GreetingController(MessageServices obj) {
+        this.obj = obj;
+    }
+    @GetMapping(path="hellogreetings")
+    public String Services(){
+        return obj.getGreetingMessage();
+    }
 }
