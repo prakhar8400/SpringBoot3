@@ -3,6 +3,7 @@ package io.reflectoring.SpringBoot3.controllers;
 import io.reflectoring.SpringBoot3.Entity.Greeting;
 import io.reflectoring.SpringBoot3.Repository.GreetingRepository;
 import io.reflectoring.SpringBoot3.services.MessageServices;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -71,4 +72,12 @@ public class GreetingController {
     public List getAllGreetings() {
         return greetingRepository.findAll();
     }
+    //UC5
+    @GetMapping("/greetings/{id}")
+    public ResponseEntity<Greeting> getGreetingById(@PathVariable Long id) {
+        return greetingRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 }
