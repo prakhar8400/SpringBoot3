@@ -1,3 +1,4 @@
+//UC12  swagger setup
 package io.reflectoring.SpringBoot3.Config;
 
 import io.swagger.v3.oas.models.OpenAPI;
