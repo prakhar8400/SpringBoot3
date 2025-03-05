@@ -36,7 +36,7 @@ public class AuthenticationService {
 
         // Generate JWT Token
         String token = jwtService.generateToken(newUser.getEmail());
-
+//UC11
         // Send Email Confirmation
         emailService.sendEmail(newUser.getEmail(), "Registration Successful", "Your account has been created!");
 
