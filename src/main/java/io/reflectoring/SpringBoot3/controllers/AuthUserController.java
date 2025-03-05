@@ -24,5 +24,10 @@ public class AuthUserController {
         return ResponseEntity.ok(authenticationService.register(authUserDTO));
     }
 
-
+    //UC10 login
+    @PostMapping("/login")
+    @Operation(summary = "Authenticates user login")
+    public ResponseEntity<String> login(@Valid @RequestBody LoginDTO loginDTO) {
+        return ResponseEntity.ok(authenticationService.login(loginDTO));
+    }
 }
